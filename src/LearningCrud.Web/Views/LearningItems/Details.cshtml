@@ -1,0 +1,19 @@
+@model LearningCrud.Web.Models.LearningItem
+@{
+    ViewData["Title"] = "Item details";
+}
+
+<h1 class="h2">Item details</h1>
+<dl class="row mt-4">
+    <dt class="col-sm-3">Title</dt>
+    <dd class="col-sm-9">@Model.Title</dd>
+    <dt class="col-sm-3">Description</dt>
+    <dd class="col-sm-9">@(!string.IsNullOrWhiteSpace(Model.Description) ? Model.Description : "No description")</dd>
+    <dt class="col-sm-3">Created (UTC)</dt>
+    <dd class="col-sm-9"><time datetime="@Model.CreatedAtUtc.ToString("O")">@Model.CreatedAtUtc.ToString("yyyy-MM-dd HH:mm:ss")</time></dd>
+</dl>
+<div class="d-flex gap-2">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Delete</a>
+    <a asp-action="Index" class="btn btn-link">Back to list</a>
+</div>

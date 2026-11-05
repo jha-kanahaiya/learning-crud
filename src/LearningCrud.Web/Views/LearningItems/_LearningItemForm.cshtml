@@ -1,0 +1,25 @@
+@model LearningCrud.Web.Models.LearningItemInputModel
+@{
+    var actionName = ViewContext.RouteData.Values["action"]?.ToString();
+    var isEdit = actionName == "Edit";
+}
+
+<form asp-action="@actionName" method="post" class="mt-4">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" autocomplete="off" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+        <div class="form-text">Required; 120 characters maximum.</div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <div class="form-text">Optional; 2,000 characters maximum.</div>
+    </div>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">@(isEdit ? "Save changes" : "Create item")</button>
+        <a asp-action="Index" class="btn btn-link">Cancel</a>
+    </div>
+</form>

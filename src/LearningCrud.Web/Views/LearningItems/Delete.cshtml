@@ -1,0 +1,19 @@
+@model LearningCrud.Web.Models.LearningItem
+@{
+    ViewData["Title"] = "Delete learning item";
+}
+
+<h1 class="h2">Delete learning item</h1>
+<div class="alert alert-warning" role="alert">
+    <p class="mb-0">Are you sure you want to permanently delete <strong>@Model.Title</strong>?</p>
+</div>
+<dl class="row">
+    <dt class="col-sm-3">Description</dt>
+    <dd class="col-sm-9">@(!string.IsNullOrWhiteSpace(Model.Description) ? Model.Description : "No description")</dd>
+    <dt class="col-sm-3">Created (UTC)</dt>
+    <dd class="col-sm-9">@Model.CreatedAtUtc.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+</dl>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">Delete permanently</button>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-link">Cancel</a>
+</form>
